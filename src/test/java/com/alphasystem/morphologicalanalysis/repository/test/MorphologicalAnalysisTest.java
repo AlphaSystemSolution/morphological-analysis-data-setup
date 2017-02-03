@@ -85,7 +85,7 @@ public class MorphologicalAnalysisTest extends AbstractTestNGSpringContextTests 
         Token token = repositoryUtil.getTokenRepository().findByChapterNumberAndVerseNumberAndTokenNumber
                 (DEFAULT_CHAPTER_NUMBER, DEFAULT_VERSE_NUMBER, 4);
         assertNotNull(token);
-        int length = token.getTokenWord().getLength();
+        int length = token.tokenWord().getLength();
         log(format("Token word length: %s", length), true);
         Location location = token.getLocations().get(0);
         location.setPartOfSpeech(DEFINITE_ARTICLE);
@@ -111,7 +111,7 @@ public class MorphologicalAnalysisTest extends AbstractTestNGSpringContextTests 
         Token token = repositoryUtil.getTokenRepository().findByChapterNumberAndVerseNumberAndTokenNumber
                 (DEFAULT_CHAPTER_NUMBER, DEFAULT_VERSE_NUMBER, 3);
         assertNotNull(token);
-        int length = token.getTokenWord().getLength();
+        int length = token.tokenWord().getLength();
         log(format("Token word length: %s", length), true);
         Location location = token.getLocations().get(0);
         NounProperties properties = (NounProperties) location.getProperties();
@@ -172,7 +172,7 @@ public class MorphologicalAnalysisTest extends AbstractTestNGSpringContextTests 
         LocationRepository locationRepository = repositoryUtil.getLocationRepository();
         Location location = locationRepository.findByDisplayName(format("%s:%s:%s:%s",
                 DEFAULT_CHAPTER_NUMBER, DEFAULT_VERSE_NUMBER, 4, 2));
-        log(format("Location found: %s (%s)", location, location.getLocationWord().toBuckWalter()), true);
+        log(format("Location found: %s (%s)", location, location.locationWord().toBuckWalter()), true);
     }
 
     @Test(dependsOnMethods = "loadLocation")

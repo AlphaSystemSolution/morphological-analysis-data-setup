@@ -82,7 +82,7 @@ public class DataSetupTool {
         for (ArabicWord aw : tokens) {
             Token token = new Token(chapterNumber, verseNumber, tokenNumber, aw.toUnicode());
             LOGGER.debug("Length of token {} is {}", token.getDisplayName(), aw.toUnicode().length());
-            LOGGER.debug("Token \"{}\" created with text \"{}\".", token, token.getTokenWord().toUnicode());
+            LOGGER.debug("Token \"{}\" created with text \"{}\".", token, token.tokenWord().toUnicode());
             // we will create one location for each token
             Location location = new Location(chapterNumber, verseNumber, tokenNumber, 1);
             token.addLocation(location);

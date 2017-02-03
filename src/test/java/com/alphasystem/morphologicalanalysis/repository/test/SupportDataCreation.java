@@ -37,7 +37,7 @@ public class SupportDataCreation extends AbstractTestNGSpringContextTests {
         Location location = new Location().withChapterNumber(token.getChapterNumber())
                 .withVerseNumber(token.getVerseNumber()).withTokenNumber(token.getTokenNumber())
                 .withLocationIndex(1).withPartOfSpeech(PRONOUN).withStartIndex(0)
-                .withEndIndex(token.getTokenWord().getLength());
+                .withEndIndex(token.tokenWord().getLength());
         System.out.println(format("creating hidden location: %s (POS: %s)", location, location.getPartOfSpeech()));
 
         token.setLocations(singletonList(location));
@@ -60,7 +60,7 @@ public class SupportDataCreation extends AbstractTestNGSpringContextTests {
         Location location = new Location().withChapterNumber(token.getChapterNumber())
                 .withVerseNumber(token.getVerseNumber()).withTokenNumber(token.getTokenNumber())
                 .withLocationIndex(1).withPartOfSpeech(partOfSpeech).withStartIndex(0)
-                .withEndIndex(token.getTokenWord().getLength()).withProperties(properties);
+                .withEndIndex(token.tokenWord().getLength()).withProperties(properties);
         location.setId(id);
         System.out.println(format("creating implied location: %s (POS: %s)", location, location.getPartOfSpeech()));
 
