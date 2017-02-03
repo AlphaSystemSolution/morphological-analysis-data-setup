@@ -8,13 +8,11 @@ import com.alphasystem.morphologicalanalysis.data.spring.DataSetupSpringConfigur
 import com.alphasystem.morphologicalanalysis.spring.support.MongoConfig;
 import com.alphasystem.morphologicalanalysis.spring.support.MorphologicalAnalysisSpringConfiguration;
 import com.alphasystem.morphologicalanalysis.spring.support.PropertyConfiguration;
-import com.alphasystem.morphologicalanalysis.spring.support.SpringApplicationContextAwareImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.alphasystem.util.Utils.getTimeConsumed;
@@ -29,11 +27,6 @@ public class BulkDataCreation extends AbstractTestNGSpringContextTests {
     private static final Logger LOGGER = LoggerFactory.getLogger(BulkDataCreation.class);
 
     @Autowired private DataSetupTool dataSetupTool;
-
-    @BeforeClass
-    public void beforeClass() {
-        SpringApplicationContextAwareImpl.getInstance().setApplicationContext(applicationContext);
-    }
 
     /**
      * Creates initial data.
