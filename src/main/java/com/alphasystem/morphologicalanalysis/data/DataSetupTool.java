@@ -1,7 +1,7 @@
 package com.alphasystem.morphologicalanalysis.data;
 
 import com.alphasystem.arabic.model.ArabicWord;
-import com.alphasystem.morphologicalanalysis.spring.support.MongoConfig;
+import com.alphasystem.morphologicalanalysis.util.Script;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Chapter;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Location;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Token;
@@ -13,8 +13,10 @@ import com.alphasystem.util.JAXBTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,12 +32,15 @@ public class DataSetupTool {
     private static final Logger LOGGER = LoggerFactory.getLogger(DataSetupTool.class);
 
     private ChapterRepository chapterRepository;
+    @Value("${script.name:SIMPLE_ENHANCED}") private String scriptName;
     private Document document;
 
-    public DataSetupTool() {
+    @PostConstruct
+    public void setup() {
         JAXBTool jaxbTool = new JAXBTool();
         try {
-            final URL url = AppUtil.getPath(MongoConfig.getCurrentScript().getPath()).toUri().toURL();
+            final Script script = Script.valueOf(scriptName);
+            final URL url = AppUtil.getPath(script.getPath()).toUri().toURL();
             LOGGER.debug("Script URL: {}", url.toString());
             document = jaxbTool.unmarshal(Document.class, url);
         } catch (IOException | JAXBException | URISyntaxException e) {
