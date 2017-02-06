@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.alphasystem.morphologicalanalysis.test;
+package com.alphasystem.morphologicalanalysis.repository.test;
 
 import com.alphasystem.morphologicalanalysis.data.DataSetupTool;
 import com.alphasystem.morphologicalanalysis.data.spring.DataSetupSpringConfiguration;
