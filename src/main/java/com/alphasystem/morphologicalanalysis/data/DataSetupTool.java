@@ -5,6 +5,7 @@ import com.alphasystem.morphologicalanalysis.util.Script;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Chapter;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Location;
 import com.alphasystem.morphologicalanalysis.wordbyword.model.Token;
+import com.alphasystem.morphologicalanalysis.wordbyword.model.support.WordType;
 import com.alphasystem.morphologicalanalysis.wordbyword.repository.ChapterRepository;
 import com.alphasystem.tanzil.model.Document;
 import com.alphasystem.tanzil.model.Verse;
@@ -67,7 +68,7 @@ public class DataSetupTool {
 
     public com.alphasystem.morphologicalanalysis.wordbyword.model.Verse createVerse(int chapterNumber,
                                                                                     com.alphasystem.morphologicalanalysis.wordbyword.model.Verse verse,
-                                                                                    com.alphasystem.tanzil.model.Verse vs) {
+                                                                                    Verse vs) {
         int verseNumber = vs.getVerseNumber();
         LOGGER.debug("Start creating verse {}", verseNumber);
         if (verse == null) {
@@ -81,12 +82,12 @@ public class DataSetupTool {
         List<ArabicWord> tokens = vs.getTokens();
         for (ArabicWord aw : tokens) {
             Token token = new Token(chapterNumber, verseNumber, tokenNumber, aw.toUnicode());
-            LOGGER.debug("Length of token {} is {}", token.getDisplayName(), aw.toUnicode().length());
+            // LOGGER.debug("Length of token {} is {}", token.getDisplayName(), aw.toUnicode().length());
             LOGGER.debug("Token \"{}\" created with text \"{}\".", token, token.tokenWord().toUnicode());
             // we will create one location for each token
-            Location location = new Location(chapterNumber, verseNumber, tokenNumber, 1);
-            token.addLocation(location);
-            verse.addToken(token);
+             Location location = new Location(chapterNumber, verseNumber, tokenNumber, 1, WordType.NOUN);
+             token.addLocation(location);
+             verse.addToken(token);
             tokenNumber++;
         } // end of token loop
         verse.setTokenCount(verse.getTokens().size());
