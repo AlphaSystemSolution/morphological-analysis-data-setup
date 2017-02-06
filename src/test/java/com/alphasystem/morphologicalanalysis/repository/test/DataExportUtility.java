@@ -1,10 +1,10 @@
 package com.alphasystem.morphologicalanalysis.repository.test;
 
 import com.alphasystem.morphologicalanalysis.morphology.model.MorphologicalEntry;
+import com.alphasystem.morphologicalanalysis.morphology.repository.MorphologicalEntryRepository;
 import com.alphasystem.morphologicalanalysis.repository.export.PropertyInfo;
 import com.alphasystem.morphologicalanalysis.spring.support.MongoConfig;
 import com.alphasystem.morphologicalanalysis.spring.support.MorphologicalAnalysisSpringConfiguration;
-import com.alphasystem.morphologicalanalysis.util.MorphologicalAnalysisRepositoryUtil;
 import com.alphasystem.persistence.model.AbstractDocument;
 import com.alphasystem.persistence.model.AbstractSimpleDocument;
 import com.alphasystem.persistence.mongo.repository.BaseRepository;
@@ -45,8 +45,7 @@ public class DataExportUtility extends AbstractTestNGSpringContextTests {
     private static final File EXPORT_ROOT_FOLDER = new File(USER_HOME_DIR, ".wordbyword");
     private static final File EXPORT_FOLDER = new File(EXPORT_ROOT_FOLDER, "export");
 
-    @Autowired
-    private MorphologicalAnalysisRepositoryUtil repositoryUtil;
+    @Autowired private MorphologicalEntryRepository morphologicalEntryRepository;
 
     private static String addPropertyNames(List<PropertyInfo> propertyInfoList) {
         StringBuilder builder = new StringBuilder();
@@ -77,7 +76,7 @@ public class DataExportUtility extends AbstractTestNGSpringContextTests {
 
     @Test
     public void exportData() {
-        export(MorphologicalEntry.class, repositoryUtil.getMorphologicalEntryRepository());
+        export(MorphologicalEntry.class, morphologicalEntryRepository);
 
         log("Done", true);
     }

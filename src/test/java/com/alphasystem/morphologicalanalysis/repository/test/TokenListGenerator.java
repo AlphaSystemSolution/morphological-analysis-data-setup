@@ -27,17 +27,12 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @ContextConfiguration(classes = {MongoConfig.class, MorphologicalAnalysisSpringConfiguration.class})
 public class TokenListGenerator extends AbstractTestNGSpringContextTests {
 
-    private MorphologicalAnalysisRepositoryUtil repositoryUtil;
-
-    @Autowired
-    public void setRepositoryUtil(MorphologicalAnalysisRepositoryUtil repositoryUtil) {
-        this.repositoryUtil = repositoryUtil;
-    }
+    @Autowired private MorphologicalAnalysisRepositoryUtil repositoryUtil;
+    @Autowired VerseRepository verseRepository;
 
     @Test
     public void generateTokenList() {
         List<String> lines = new ArrayList<>();
-        VerseRepository verseRepository = repositoryUtil.getVerseRepository();
         List<Chapter> chapters = repositoryUtil.findAllChapters();
         chapters.forEach(chapter -> {
             lines.add(valueOf(chapter.getChapterNumber()));

@@ -22,18 +22,12 @@ import static java.lang.String.format;
 @ContextConfiguration(classes = {MongoConfig.class, MorphologicalAnalysisSpringConfiguration.class})
 public class DeleteData extends AbstractTestNGSpringContextTests {
 
-    private MorphologicalAnalysisRepositoryUtil repositoryUtil;
-
-    @Autowired
-    public void setRepositoryUtil(MorphologicalAnalysisRepositoryUtil repositoryUtil) {
-        this.repositoryUtil = repositoryUtil;
-    }
+    @Autowired private MorphologicalAnalysisRepositoryUtil repositoryUtil;
+    @Autowired private DependencyGraphRepository dependencyGraphRepository;
 
     @Test
     @Parameters({"displayName"})
     public void deleteDependencyGraph(String displayName) {
-        DependencyGraphRepository dependencyGraphRepository = repositoryUtil.getDependencyGraphRepository();
-
         DependencyGraph dependencyGraph = dependencyGraphRepository.findByDisplayName(displayName);
         if (dependencyGraph == null) {
             System.out.println(format("No DependencyGraph found with Display Name {%s}", displayName));
