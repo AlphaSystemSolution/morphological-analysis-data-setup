@@ -31,6 +31,8 @@ import java.util.List;
 public class DataSetupTool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DataSetupTool.class);
+    private static final int FIRST_CHAPTER_NUMBER = 1;
+    private static final int LAST_CHAPTER_NUMBER = 114;
 
     private ChapterRepository chapterRepository;
     @Value("${script.name:SIMPLE_ENHANCED}") private String scriptName;
@@ -50,7 +52,7 @@ public class DataSetupTool {
     }
 
     public void createChapter(int chapterNumber) {
-        if (chapterNumber <= 0 || chapterNumber > 114) {
+        if (chapterNumber < FIRST_CHAPTER_NUMBER || chapterNumber > LAST_CHAPTER_NUMBER) {
             throw new RuntimeException(String.format("Invalid chapter number: %s", chapterNumber));
         }
         LOGGER.debug("Start creating chapter {}", chapterNumber);
