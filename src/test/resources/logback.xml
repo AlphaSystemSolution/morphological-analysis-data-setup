@@ -45,7 +45,7 @@
         <appender-ref ref="FILE"/>
     </root>
 
-    <logger name="com.alphasystem.morphologicalanalysis.data.DataSetupTool" level="DEBUG"/>
+    <logger name="com.alphasystem.morphologicalanalysis.util" level="INFO"/>
     <logger name="com.alphasystem.persistence.mongo.spring.support" level="INFO"/>
     <logger name="com.alphasystem.morphologicalanalysis.wordbyword.listener" level="INFO"/>
     <logger name="org.springframework.data.mongodb.core" level="INFO"/>

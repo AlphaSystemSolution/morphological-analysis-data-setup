@@ -28,6 +28,7 @@ import java.util.List;
  * @author sali
  */
 @Component
+@Deprecated
 public class DataSetupTool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DataSetupTool.class);
